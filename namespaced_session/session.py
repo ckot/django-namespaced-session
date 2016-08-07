@@ -1,13 +1,19 @@
 from __future__ import absolute_import, unicode_literals
 
+"""
+functions from Martijn Pieters's answer to;
+
+http://stackoverflow.com/questions/23011146/recursive-access-to-dictionary-and-modification
+"""
+
 def get_nested_default(dct, path):
     return reduce(lambda dct, k: dct.setdefault(k, {}), path, dct)
 
 def set_nested(dct, path, value):
     get_nested_default(dct, path[:-1])[path[-1]] = value
 
-class NamespacedSession(object):
 
+class NamespacedSession(object):
     def __init__(self, session, path):
         self._path = [str(part) for part in path]
         self._dct = session
