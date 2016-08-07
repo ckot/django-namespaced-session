@@ -4,7 +4,7 @@ from __future__ import absolute_import, unicode_literals
 import os
 from setuptools import find_packages, setup
 
-__VERSION__ = '0.0.0'
+__VERSION__ = '0.1.0'
 
 
 with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
