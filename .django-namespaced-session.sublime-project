@@ -1,8 +1,17 @@
 {
-	"folders":
-	[
-		{
-			"path": "."
-		}
-	]
+    "folders":
+    [
+        {
+            "path": ".",
+            "folder_exclude_patterns": [
+                "__pycache__",
+                ".tox",
+                "env",
+                "dist",
+                "*.egg-info",
+                ".eggs",
+                "build"
+            ]
+        }
+    ]
 }
