@@ -90,3 +90,6 @@ ENV/
 
 # subllime project stuff
 *.sublime-workspace
+
+# sqlite
+*.sqlite3
