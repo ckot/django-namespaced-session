@@ -4,8 +4,7 @@ from __future__ import absolute_import, unicode_literals
 import os
 from setuptools import find_packages, setup
 
-__VERSION__ = '0.1.1'
-
+from namespaced_session import __version__
 
 with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
     README = readme.read()
@@ -15,7 +14,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-namespaced-session',
-    version=__VERSION__,
+    version=__version__,
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
