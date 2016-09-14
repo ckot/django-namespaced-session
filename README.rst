@@ -1,6 +1,9 @@
 django-namespaced-session
 =========================
 
+.. image:: https://travis-ci.org/travis-ci/travis-web.svg?branch=master
+    :target: https://travis-ci.org/travis-ci/travis-web
+
 .. image:: https://coveralls.io/repos/github/ckot/django-namespaced-session/badge.svg?branch=master
 :target: https://coveralls.io/github/ckot/django-namespaced-session?branch=master
 
