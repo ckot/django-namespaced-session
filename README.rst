@@ -1,11 +1,12 @@
 django-namespaced-session
 =========================
 
-.. image:: https://travis-ci.org/travis-ci/travis-web.svg?branch=master
-    :target: https://travis-ci.org/travis-ci/travis-web
+.. image:: https://travis-ci.org/ckot/django-namespaced-session.svg?branch=master
+    :target: https://travis-ci.org/ckot/django-namespaced-session
+
 
 .. image:: https://coveralls.io/repos/github/ckot/django-namespaced-session/badge.svg?branch=master
-:target: https://coveralls.io/github/ckot/django-namespaced-session?branch=master
+    :target: https://coveralls.io/github/ckot/django-namespaced-session?branch=master
 
 
 A Django app which makes it easier to work with dictionaries in sessions.
