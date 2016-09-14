@@ -1,6 +1,10 @@
 django-namespaced-session
 =========================
 
+.. image:: https://coveralls.io/repos/github/ckot/django-namespaced-session/badge.svg?branch=master
+:target: https://coveralls.io/github/ckot/django-namespaced-session?branch=master
+
+
 A Django app which makes it easier to work with dictionaries in sessions.
 
 This package provides a class which makes it easy to retrieve/create a path

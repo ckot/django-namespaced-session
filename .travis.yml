@@ -12,6 +12,7 @@ env:
 # command to install dependencies
 install:
   - pip install tox
+  - pip install coveralls
 # command to run tests
 script:
   - tox -e $TOX_ENV
