@@ -17,10 +17,6 @@ setup(
     version=__version__,
     packages=find_packages(),
     include_package_data=True,
-    install_requires=[
-        'django>=1.7,<1.10',
-    ],
-    # tests_require=['tox'],
     test_suite="runtests.main",
     license='MIT',
     description='Django app which makes it easier to work with dictionaries in sessions',
