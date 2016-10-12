@@ -15,7 +15,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='django-namespaced-session',
     version=__version__,
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests']),
     include_package_data=True,
     test_suite="runtests.main",
     license='MIT',
