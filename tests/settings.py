@@ -2,8 +2,6 @@ SECRET_KEY = 'fake-key'
 
 
 INSTALLED_APPS = [
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
     "django.contrib.sessions",
     "namespaced_session",
     "tests",
@@ -24,10 +22,5 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'db.sqlite3',
-        'TEST': {
-            'NAME': 'test_db.sqlite3'
-        }
     }
 }
-
-TESTING = True
