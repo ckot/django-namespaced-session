@@ -29,6 +29,9 @@ class NamespacedSession(object):
     def get_sess_info(self):
         return self._value
 
+    def save(self):
+        self._dct.save()
+
     def get(self, path):
         """returns value at path in nss"""
         pth = self._path[:]
@@ -41,7 +44,7 @@ class NamespacedSession(object):
         pth.extend(stringify_keys(path))
         set_nested(self._dct, pth, value)
         self._value = get_nested_default(self._dct, self._path)
-        self._dct.save()
+        self.save()
 
     def update(self, value):
         """performs a dict update at base path of nss"""
@@ -49,13 +52,13 @@ class NamespacedSession(object):
         orig.update(value)
         set_nested(self._dct, self._path, orig)
         self._value = get_nested_default(self._dct, self._path)
-        self._dct.save()
+        self.save()
 
     def clear(self):
         """empties the dict stored in the nss"""
         set_nested(self._dct, self._path, {})
         self._value = get_nested_default(self._dct, self._path)
-        self._dct.save()
+        self.save()
 
     def delete(self, path):
         """deletes the key which is the last element in path"""
@@ -67,6 +70,7 @@ class NamespacedSession(object):
             del get_nested_default(self._dct, pth)[key]
         else:
             del get_nested_default(self._dct, self._path)[key]
+        self.save()
 
     def destroy(self):
         """deletes the data stored at the path and then iteravely deletes
@@ -87,4 +91,4 @@ class NamespacedSession(object):
             else:
                 # dict isn't empty. stop iteration
                 break
-        self._dct.save()
+        self.save()
