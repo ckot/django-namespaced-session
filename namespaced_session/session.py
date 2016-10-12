@@ -12,10 +12,12 @@ def get_nested_default(dct, path):
 def set_nested(dct, path, value):
     get_nested_default(dct, path[:-1])[path[-1]] = value
 
+def stringify_keys(path):
+    return [str(part) for part in path]
 
 class NamespacedSession(object):
     def __init__(self, session, path):
-        self._path = [str(part) for part in path]
+        self._path = stringify_keys(path)
         self._dct = session
         self._value = None
         self._initialize_path_if_not_exists()
@@ -27,12 +29,50 @@ class NamespacedSession(object):
     def get_sess_info(self):
         return self._value
 
-    def update(self, value):
-        set_nested(self._dct, self._path, value)
+    def get(self, path):
+        """returns value at path in nss"""
+        pth = self._path[:]
+        pth.extend(stringify_keys(path))
+        return get_nested_default(self._dct, pth)
+
+    def set(self, path, value):
+        """sets value at path within nss"""
+        pth = self._path[:]
+        pth.extend(stringify_keys(path))
+        set_nested(self._dct, pth, value)
         self._value = get_nested_default(self._dct, self._path)
         self._dct.save()
 
-    def delete(self):
+    def update(self, value):
+        """performs a dict update at base path of nss"""
+        orig = get_nested_default(self._dct, self._path)
+        orig.update(value)
+        set_nested(self._dct, self._path, orig)
+        self._value = get_nested_default(self._dct, self._path)
+        self._dct.save()
+
+    def clear(self):
+        """empties the dict stored in the nss"""
+        set_nested(self._dct, self._path, {})
+        self._value = get_nested_default(self._dct, self._path)
+        self._dct.save()
+
+    def delete(self, path):
+        """deletes the key which is the last element in path"""
+        head = path[:-1]
+        key = str(path[-1])
+        if len(head):
+            pth = self._path[:]
+            pth.extend(stringify_keys(head))
+            del get_nested_default(self._dct, pth)[key]
+        else:
+            del get_nested_default(self._dct, self._path)[key]
+
+    def destroy(self):
+        """deletes the data stored at the path and then iteravely deletes
+        the path into the session object until it finds a key with an non-
+        empty dict
+        """
         self._value = None
         del get_nested_default(self._dct, self._path[:-1])[self._path[-1]]
         self._path.pop()
