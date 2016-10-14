@@ -37,28 +37,48 @@ CONFIGURATION
 Make sure 'django.contrib.sessions' is in INSTALLED_APPS
 
 
-
 USAGE
 -----
 
 ::
-
     from namespaced_session.session import NamespacedSession
 
     def some_view(request, foo_id, bar_id):
 
         # returns an object which wraps session['foos'][foo_id]['bars'][bar_id]
-        sess = NamespacedSession(request.session,
-                                 ['foos', foo_id, 'bars', bar_id])
+        # initializes the path via defaultdict if the path doesn't exist
+        nss = NamespacedSession(request,
+                                ['foos', foo_id, 'bars', bar_id])
 
         # returns the dict stored at session['foos'][foo_id]['bars'][bar_id]
-        sess_info = sess.get_sess_info()
+        sess_info = nss.get_sess_info()
 
         # sets session['foos'][foo_id]['bars'][bar_id]['some_field'] = some_value
-        sess.update({'some_field': some_value})
+        nss.update({'some_field': some_value})
 
-        # deletes session['foos'][foo_id]['bars'][bar_id] and then, working
+        # sets session['foos'][foo_id]['bars'][bar_id]["baz"] = 2
+        nss.set(["baz"], 2)
+
+        # sets session['foos'][foo_id]['bars'][bar_id]['boo']['qux'] = {"quux": 1}
+        nss.set(["boo", "qux"], {"quux": 1})
+
+        # returns {"qux": {"quux": 1}}
+        nss.get(["boo"])
+
+        # deletes "qux" key from "boo". sessions['foos'][foo_id]['bars'][bar_id]['boo']
+        # is now an empty dict
+        nss.delete(["boo", "qux"])
+
+        # sets session['foos'][foo_id]['bars'][bar_id] to an empty dict
+        nss.clear()
+
+        # sets request.session.modified = True and also calls request.session.save()
+        # this is called automatically by all methods which modify the session
+        # probably should remove the call to request.session.save() for efficiency reasons
+        nss.save()
+
+        # clears contents stored at session['foos'][foo_id]['bars'][bar_id] and then, working
         # backwards from 'bars' all the way down to 'foos', if the
         # key's value is an empty dict, will delete that key. deletion will
         # stop at the first key whose value is not an empty dict
-        sess.delete()
+        nss.destroy()
