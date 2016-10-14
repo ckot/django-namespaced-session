@@ -7,6 +7,7 @@
                 "__pycache__",
                 ".tox",
                 "env",
+                "venv",
                 "dist",
                 "*.egg-info",
                 ".eggs",
