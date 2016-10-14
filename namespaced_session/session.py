@@ -31,6 +31,7 @@ class NamespacedSession(object):
 
     def save(self):
         self._request.session.modified = True
+        self._request.session.save()
 
     def get(self, path):
         """returns value at path in nss"""
