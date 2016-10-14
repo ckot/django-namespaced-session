@@ -25,6 +25,20 @@ setup(
     author='Scott Silliman',
     author_email='scott.t.silliman@gmail.com',
     classifiers=[
+        'Development Status :: 4 - Beta',
+        'Framework :: Django',
+        'Framework :: Django :: 1.7',
+        'Framework :: Django :: 1.8'
+        'Framework :: Django :: 1.9'
+        'Framework :: Django :: 1.10',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved',
+        'License :: OSI Approved :: MIT License',
+        'Natural Language :: English',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
         'Private :: Do Not Upload'
     ],
 )
