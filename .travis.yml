@@ -14,11 +14,7 @@ env:
   - TOX_ENV=py34-django110
   - TOX_ENV=py35-django110
   - TOX_ENV=pypy-django110
-  - TOX_ENV=py27-django111
-  - TOX_ENV=py34-django111
-  - TOX_ENV=py35-django111
-  - TOX_ENV=pypy-django111
-# command to install dependencies
+  command to install dependencies
 install:
   - pip install tox
   - pip install coveralls
