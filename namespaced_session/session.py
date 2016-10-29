@@ -3,7 +3,7 @@ from __future__ import absolute_import, unicode_literals
 try:
     # pylint:disable=I0011,W0622
     from functools import reduce
-except ImportError:
+except ImportError:  # pragma: no cover
     pass
 
 """
