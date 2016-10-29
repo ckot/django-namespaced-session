@@ -1,5 +1,11 @@
 from __future__ import absolute_import, unicode_literals
 
+try:
+    # pylint:disable=I0011,W0622
+    from functools import reduce
+except ImportError:
+    pass
+
 """
 functions from Martijn Pieters's answer to;
 
